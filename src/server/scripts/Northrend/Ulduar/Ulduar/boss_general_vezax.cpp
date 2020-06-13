@@ -218,7 +218,7 @@ public:
                     break;
                 case EVENT_SPELL_VEZAX_SHADOW_CRASH:
                     {
-                        events.RepeatEvent(10000);
+                        events.RepeatEvent(9000);
 
                         std::vector<Player*> players;
                         Map::PlayerList const& pl = me->GetMap()->GetPlayers();

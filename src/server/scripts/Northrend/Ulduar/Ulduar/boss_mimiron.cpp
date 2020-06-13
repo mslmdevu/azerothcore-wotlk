@@ -1374,6 +1374,9 @@ public:
                         events.ScheduleEvent(EVENT_REINSTALL_ROCKETS, 3000);
                         events.ScheduleEvent(EVENT_SPELL_ROCKET_STRIKE, 16000);
                         events.ScheduleEvent(EVENT_HAND_PULSE, 1);
+                        // NOTE: commented out because of 2 issues:
+                        // 1. the bottom part doesn't follow its target while spinning
+                        // 2. the spin sometimes provides the wrong visual relative to the actual spin
                         //events.ScheduleEvent(EVENT_SPELL_SPINNING_UP, 30000);
                         if (Creature* c = GetMimiron())
                             if (c->AI()->GetData(1))
@@ -2022,7 +2025,7 @@ public:
             if (timer <= diff)
             {
                 timer = 500;
-                if (!exploded && SelectTargetFromPlayerList(1.9f))
+                if (!exploded && SelectTargetFromPlayerList(1.5f))
                 {
                     exploded = true;
                     me->CastSpell(me, SPELL_MINE_EXPLOSION, false);

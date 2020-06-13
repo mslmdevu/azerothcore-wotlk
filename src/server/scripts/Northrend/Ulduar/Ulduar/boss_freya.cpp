@@ -527,7 +527,7 @@ public:
                 elder->CastSpell(elder, SPELL_BRIGHTLEAF_ESSENCE, true);
                 elder->SetInCombatWithZone();
 
-                events.ScheduleEvent(EVENT_FREYA_UNSTABLE_SUN_BEAM, 60000);
+                events.ScheduleEvent(EVENT_FREYA_UNSTABLE_SUN_BEAM, urand(15000, 20000));
                 _elderGUID[2] = elder->GetGUID();
             }
 
@@ -636,15 +636,16 @@ public:
                 break;
             case EVENT_FREYA_IRON_ROOT:
                 me->CastCustomSpell(SPELL_IRON_ROOTS_FREYA, SPELLVALUE_MAX_TARGETS, 1, me, false);
-                events.RepeatEvent(45000+urand(0,10000));
+                events.RepeatEvent(urand(10000,20000));
                 break;
             case EVENT_FREYA_UNSTABLE_SUN_BEAM:
-                if (Creature* cr = me->SummonCreature(NPC_FREYA_UNSTABLE_SUN_BEAM, me->GetPositionX()+urand(7,25), me->GetPositionY()+urand(7,25), me->GetMap()->GetHeight(me->GetPositionX(), me->GetPositionY(), MAX_HEIGHT), 0, TEMPSUMMON_TIMED_DESPAWN, 10000))
+                Player *plr = SelectTargetFromPlayerList(135.0f);
+                if (Creature* cr = me->SummonCreature(NPC_FREYA_UNSTABLE_SUN_BEAM, plr->GetPositionX(), plr->GetPositionY(), plr->GetMap()->GetHeight(plr->GetPositionX(), plr->GetPositionY(), MAX_HEIGHT), 0, TEMPSUMMON_TIMED_DESPAWN, 10000))
                 {
                     cr->CastSpell(cr, SPELL_UNSTABLE_SUN_VISUAL, true);
                     cr->CastSpell(cr, SPELL_UNSTABLE_SUN_FREYA_DAMAGE, true);
                 }
-                events.RepeatEvent(38000+urand(0,10000));
+                events.RepeatEvent(urand(15000,20000));
                 break;
             }
 

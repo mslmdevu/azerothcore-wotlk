@@ -1077,7 +1077,7 @@ public:
                     break;
                 case EVENT_MAGE_TOASTY_FIRE:
                     me->CastSpell(me, SPELL_MAGE_CONJURE_TOASTY_FIRE, false);
-                    events.RepeatEvent(10000);
+                    events.RepeatEvent(60000);
                     break;
                 case EVENT_MAGE_MELT_ICE:
                     {
@@ -1156,12 +1156,12 @@ public:
         PrepareAuraScript(spell_hodir_biting_cold_player_aura_AuraScript)
 
         uint8 counter;
-        bool prev;
+        //bool prev;
 
         bool Load()
         {
             counter = 0;
-            prev = false;
+            //prev = false;
             return true;
         }
 
@@ -1176,13 +1176,13 @@ public:
                     return;
                 if (target->isMoving() || target->HasAura(SPELL_MAGE_TOASTY_FIRE_AURA))
                 {
-                    if (prev)
-                    {
+                    //if (prev)
+                    //{
                         ModStackAmount(-1);
-                        prev = false;
-                    }
-                    else
-                        prev = true;
+                        //prev = false;
+                    //}
+                    //else
+                        //prev = true;
 
                     if (counter>=2)
                         counter -= 2;
@@ -1191,7 +1191,7 @@ public:
                 }
                 else
                 {
-                    prev = false;
+                    //prev = false;
                     ++counter;
                     if (counter >= 4)
                     {

@@ -267,7 +267,7 @@ public:
                     events.RescheduleEvent(EVENT_FUSION_PUNCH, 15000);
                     break;
                 case 2:
-                    events.RescheduleEvent(EVENT_STATIC_DISRUPTION, 20000);
+                    events.RescheduleEvent(EVENT_STATIC_DISRUPTION, 10000);
                     break;
                 case 3:
                     me->ResetLootMode();
@@ -297,11 +297,11 @@ public:
 
         void KilledUnit(Unit* who) override
         {
-            if (_phase == 3)
-                me->CastSpell(me, SPELL_ELECTRICAL_CHARGE, true);
-
             if (who->GetTypeId() != TYPEID_PLAYER)
                 return;
+
+            if (_phase == 3)
+                me->CastSpell(me, SPELL_ELECTRICAL_CHARGE, true);
 
             Talk(SAY_STEELBREAKER_SLAY);
         }
@@ -337,7 +337,7 @@ public:
                     if (Unit *pTarget = SelectTarget(SELECT_TARGET_FARTHEST, 0, 0, true))
                         me->CastSpell(pTarget, SPELL_STATIC_DISRUPTION, false);
 
-                    events.RepeatEvent(urand(20000,40000));
+                    events.RepeatEvent(urand(10000,20000));
                     break;
                 case EVENT_OVERWHELMING_POWER:
                     Talk(SAY_STEELBREAKER_POWER);
@@ -443,7 +443,7 @@ public:
             {
                 case 1:
                     events.RescheduleEvent(EVENT_SHIELD_OF_RUNES, 20000);
-                    events.RescheduleEvent(EVENT_RUNE_OF_POWER, 30000);
+                    events.RescheduleEvent(EVENT_RUNE_OF_POWER, 20000);
                     break;
                 case 2:
                     events.RescheduleEvent(EVENT_RUNE_OF_DEATH, 35000);
